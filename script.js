@@ -9,7 +9,7 @@
 
 // Cole sua chave do Google AI Studio aqui:
 // aistudio.google.com → Get API Key
-const API_KEY = "COLE_SUA_CHAVE_AQUI";
+const API_KEY = "AQ.Ab8RN6JU5wfZPSOUL18MvOSZkPxy2xlP-wMuaZjz0GTkSvaCgg";
 
 const API_URL = "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions";
 
