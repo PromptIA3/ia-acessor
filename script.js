@@ -12,7 +12,7 @@
 ─────────────────────────────────────────────────────────────── */
 
 // Sua chave de API (ex: "sk-ant-api03-..." para Claude, "sk-..." para OpenAI)
-const API_KEY = "";
+const API_KEY = "AQ.Ab8RN6Lrxm8v_u67qetsAWhcXrjx_z9TBbi17BJhatUEiEKhag";
 
 // URL do endpoint compatível com OpenAI
 // Exemplos:
@@ -20,11 +20,11 @@ const API_KEY = "";
 //   Claude  → "https://api.anthropic.com/v1/messages"  (requer header diferente)
 //   Groq    → "https://api.groq.com/openai/v1/chat/completions"
 //   Ollama  → "http://localhost:11434/v1/chat/completions"
-const API_URL = "";
+const API_URL = "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions";
 
 // Modelo a ser usado (ajuste conforme o provedor)
 // Exemplos: "gpt-4o-mini", "claude-sonnet-4-6", "llama3-8b-8192"
-const MODEL = "gpt-4o-mini";
+const MODEL = "gemini-2.0-flash";
 
 
 /* ── 2. PROMPT DO SISTEMA ───────────────────────────────────────
