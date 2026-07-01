@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TikTok AI Assistant</title>
+
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ── Painel central ── -->
+  <div class="card">
+
+    <!-- Cabeçalho -->
+    <header class="card__header">
+      <div class="logo">
+        <span class="logo__icon">✦</span>
+        <span class="logo__text">TikTok AI Assistant</span>
+      </div>
+      <p class="subtitle">Gere ideias e roteiros para vídeos em poucos segundos.</p>
+    </header>
+
+    <!-- Área de mensagens -->
+    <section class="chat" id="chat" aria-live="polite" aria-label="Conversa com a IA"></section>
+
+    <!-- Rodapé com campo de entrada -->
+    <footer class="card__footer">
+      <textarea
+        id="input"
+        class="input"
+        placeholder="Ex: Me dê 5 ideias de vídeo sobre produtividade..."
+        rows="1"
+        aria-label="Digite sua mensagem"
+      ></textarea>
+      <button id="sendBtn" class="btn" aria-label="Enviar mensagem">Enviar</button>
+    </footer>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

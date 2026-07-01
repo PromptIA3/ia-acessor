@@ -1,0 +1,269 @@
+/* ═══════════════════════════════════════════════════
+   TikTok AI Assistant — style.css
+   Tema: minimalista, dark, fundo #0f172a
+   Paleta: azul (#3b82f6), roxo (#8b5cf6), branco, cinza escuro
+═══════════════════════════════════════════════════ */
+
+/* ── Reset básico ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── Variáveis de design ── */
+:root {
+  --bg-page:       #0f172a;   /* fundo geral */
+  --bg-card:       #1e293b;   /* fundo do card */
+  --bg-msg-user:   #3b82f6;   /* bolha do usuário (azul) */
+  --bg-msg-ai:     #334155;   /* bolha da IA (cinza escuro) */
+  --bg-input:      #0f172a;   /* fundo do textarea */
+  --color-text:    #f1f5f9;   /* texto principal */
+  --color-muted:   #94a3b8;   /* texto secundário */
+  --color-border:  #334155;   /* bordas */
+  --color-accent:  #8b5cf6;   /* roxo de destaque */
+  --color-btn:     #3b82f6;   /* botão */
+  --color-btn-hover: #2563eb; /* botão hover */
+  --radius-card:   16px;
+  --radius-msg:    12px;
+  --radius-input:  10px;
+  --font:          'Inter', sans-serif;
+  --shadow-card:   0 25px 60px rgba(0, 0, 0, 0.5);
+}
+
+/* ── Página ── */
+body {
+  font-family: var(--font);
+  background: var(--bg-page);
+  color: var(--color-text);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* ── Card central ── */
+.card {
+  width: 100%;
+  max-width: 720px;
+  background: var(--bg-card);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  /* altura fixa para o chat rolar internamente */
+  height: 90vh;
+  max-height: 840px;
+  overflow: hidden;
+}
+
+/* ── Cabeçalho do card ── */
+.card__header {
+  padding: 28px 28px 20px;
+  border-bottom: 1px solid var(--color-border);
+  flex-shrink: 0; /* não encolhe */
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.logo__icon {
+  font-size: 1.3rem;
+  color: var(--color-accent);
+}
+
+.logo__text {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--color-text);
+  letter-spacing: -0.3px;
+}
+
+.subtitle {
+  font-size: 0.85rem;
+  color: var(--color-muted);
+  line-height: 1.5;
+}
+
+/* ── Área de chat ── */
+.chat {
+  flex: 1;           /* ocupa todo o espaço disponível */
+  overflow-y: auto;  /* rola quando necessário */
+  padding: 24px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  /* Scrollbar discreta */
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border) transparent;
+}
+
+.chat::-webkit-scrollbar       { width: 5px; }
+.chat::-webkit-scrollbar-track { background: transparent; }
+.chat::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: 99px; }
+
+/* ── Mensagem genérica ── */
+.msg {
+  display: flex;
+  flex-direction: column;
+  max-width: 82%;
+  gap: 4px;
+  /* animação de entrada simples */
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Mensagem do usuário — alinhada à direita */
+.msg--user {
+  align-self: flex-end;
+  align-items: flex-end;
+}
+
+/* Mensagem da IA — alinhada à esquerda */
+.msg--ai {
+  align-self: flex-start;
+  align-items: flex-start;
+}
+
+/* ── Rótulo (Você / IA) ── */
+.msg__label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--color-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ── Bolha de texto ── */
+.msg__bubble {
+  padding: 12px 16px;
+  border-radius: var(--radius-msg);
+  font-size: 0.92rem;
+  line-height: 1.65;
+  white-space: pre-wrap; /* preserva quebras de linha da resposta */
+  word-break: break-word;
+}
+
+.msg--user .msg__bubble {
+  background: var(--bg-msg-user);
+  color: #fff;
+  border-bottom-right-radius: 4px; /* detalhe estilo chat */
+}
+
+.msg--ai .msg__bubble {
+  background: var(--bg-msg-ai);
+  color: var(--color-text);
+  border-bottom-left-radius: 4px;
+}
+
+/* Estado "Pensando..." com pontilhado animado */
+.msg__bubble--thinking::after {
+  content: '';
+  display: inline-block;
+  width: 20px;
+  animation: dots 1.2s steps(4, end) infinite;
+}
+
+@keyframes dots {
+  0%   { content: ''; }
+  25%  { content: '.'; }
+  50%  { content: '..'; }
+  75%  { content: '...'; }
+  100% { content: ''; }
+}
+
+/* ── Mensagem de erro ── */
+.msg__bubble--error {
+  background: #450a0a;
+  color: #fca5a5;
+  border: 1px solid #7f1d1d;
+}
+
+/* ── Rodapé com input ── */
+.card__footer {
+  padding: 16px 28px 20px;
+  border-top: 1px solid var(--color-border);
+  display: flex;
+  gap: 10px;
+  align-items: flex-end;
+  flex-shrink: 0;
+}
+
+/* ── Textarea ── */
+.input {
+  flex: 1;
+  background: var(--bg-input);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-input);
+  padding: 12px 16px;
+  font-family: var(--font);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  resize: none;
+  outline: none;
+  transition: border-color 0.2s;
+  /* cresce até ~4 linhas via JS */
+  max-height: 120px;
+  overflow-y: auto;
+}
+
+.input::placeholder {
+  color: var(--color-muted);
+}
+
+.input:focus {
+  border-color: var(--color-accent);
+}
+
+/* ── Botão Enviar ── */
+.btn {
+  background: var(--color-btn);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-input);
+  padding: 12px 22px;
+  font-family: var(--font);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, opacity 0.2s;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.btn:hover:not(:disabled) {
+  background: var(--color-btn-hover);
+}
+
+/* Estado desabilitado enquanto aguarda resposta */
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* ── Responsivo para telas menores ── */
+@media (max-width: 480px) {
+  body { padding: 0; }
+
+  .card {
+    height: 100vh;
+    max-height: 100vh;
+    border-radius: 0;
+    border: none;
+  }
+
+  .card__header { padding: 20px 18px 16px; }
+  .chat         { padding: 16px 18px; }
+  .card__footer { padding: 12px 18px 16px; }
+}
