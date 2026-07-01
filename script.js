@@ -11,7 +11,7 @@
 // aistudio.google.com → Get API Key
 const API_KEY = "AQ.Ab8RN6IExFYzGzJPsNHwvzOsfo6Hi1phb_qSkt1T_sYW13RFaQ";
 
-const API_URL = "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions";
+const API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=" + API_KEY;
 
 const MODEL = "gemini-2.0-flash";
 
